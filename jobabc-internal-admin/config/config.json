@@ -1,0 +1,20 @@
+{
+  "prod": {
+    "host": "${PROD_HOST}",
+    "port": 22,
+    "username": "${PROD_USERNAME}",
+    "history_path": "/home/forge/internal-website/web-history",
+    "output_path": "/home/forge/internal-website/admin",
+    "build": "build",
+    "git_checkout": "master"
+  },
+  "dev": {
+    "host": "${DEV_HOST}",
+    "port": 22,
+    "username": "${DEV_USERNAME}",
+    "history_path": "/home/www/jobabc-internal/web-history",
+    "output_path": "/home/www/jobabc-internal/admin",
+    "build": "build:test",
+    "git_checkout": "develop"
+  }
+}

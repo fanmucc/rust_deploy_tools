@@ -1,0 +1,9 @@
+[package]
+name = "deploy_tools"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+dotenvy="0.15"
+jobabc-internal-admin = { path = "jobabc-internal-admin" }
+dialoguer = "0.11"
