@@ -90,28 +90,26 @@ pub fn compress_and_deploy(
         channel.wait_close()?;
     }
 
-    // 如果是历史版本，直接从历史目录复制
-    if is_history {
-        println!("从历史版本复制文件...");
-        let mut channel = sess.channel_session()?;
-        channel.exec(&format!(
-            "cp {}/{} {}/{}",
-            history_path.display(),
-            version,
-            deploy_path.display(),
-            version
-        ))?;
+    // 从历史目录复制文件到部署目录
+    println!("从历史版本复制文件...");
+    let mut channel = sess.channel_session()?;
+    channel.exec(&format!(
+        "cp {}/{} {}/{}",
+        history_path.display(),
+        version,
+        deploy_path.display(),
+        version
+    ))?;
 
-        // 读取命令输出
-        let mut output = String::new();
-        channel.read_to_string(&mut output)?;
-        channel.wait_close()?;
-    }
+    // 读取命令输出
+    let mut output = String::new();
+    channel.read_to_string(&mut output)?;
+    channel.wait_close()?;
 
     // 解压文件
     let mut channel = sess.channel_session()?;
     channel.exec(&format!(
-        "cd {} && unzip -o {} && rm {}",
+        "cd {} && unzip -o {} && rm {} && chmod -R 755 dist",
         deploy_path.display(),
         version,
         version

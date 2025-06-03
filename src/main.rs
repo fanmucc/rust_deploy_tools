@@ -1,8 +1,9 @@
 use dialoguer::{Select, theme::ColorfulTheme};
 use jobabc_internal_admin;
+use jobabc_internal_next;
 
 fn main() {
-    let projects = vec!["jobabc-internal-admin", "退出"];
+    let projects = vec!["jobabc-internal-admin", "jobabc-internal-next", "退出"];
 
     loop {
         let selection = Select::with_theme(&ColorfulTheme::default())
@@ -52,6 +53,31 @@ fn main() {
                 }
             }
             1 => {
+                println!("正在运行 jobabc-internal-next...");
+                let actions = vec!["打包 dev", "打包 prod", "返回主菜单"];
+
+                let action = Select::with_theme(&ColorfulTheme::default())
+                    .with_prompt("请选择操作")
+                    .items(&actions)
+                    .default(0)
+                    .interact()
+                    .unwrap();
+
+                // 根据 action 选择打包环境
+                match action {
+                    0 => {
+                        let env = String::from("dev");
+                        println!("正在打包 dev 环境...");
+                        match jobabc_internal_next::build::main(&env) {
+                            Ok(()) => println!("打包成功"),
+                            Err(e) => println!("打包失败: {}", e),
+                        }
+                        break;
+                    }
+                    _ => unreachable!(),
+                }
+            }
+            2 => {
                 println!("退出程序");
                 break;
             }

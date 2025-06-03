@@ -6,4 +6,5 @@ edition = "2024"
 [dependencies]
 dotenvy="0.15"
 jobabc-internal-admin = { path = "jobabc-internal-admin" }
+jobabc-internal-next = { path = "jobabc-internal-next"}
 dialoguer = "0.11"

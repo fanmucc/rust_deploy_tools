@@ -1,2 +1,3 @@
 /target
 /jobabc-internal-admin/*.env
+/jobabc-internal-next/*.env

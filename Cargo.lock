@@ -117,6 +117,7 @@ dependencies = [
  "dialoguer",
  "dotenvy",
  "jobabc-internal-admin",
+ "jobabc-internal-next",
 ]
 
 [[package]]
@@ -265,6 +266,20 @@ dependencies = [
  "chrono",
  "dialoguer",
  "dotenv",
+ "prettytable-rs",
+ "serde",
+ "serde_json",
+ "ssh2",
+]
+
+[[package]]
+name = "jobabc-internal-next"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "dialoguer",
+ "dotenv",
+ "jobabc-internal-admin",
  "prettytable-rs",
  "serde",
  "serde_json",
